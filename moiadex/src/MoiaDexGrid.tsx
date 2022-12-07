@@ -41,7 +41,7 @@ export const MoiaDexGrid = (props: { moias: Moia[]; refetch }) => {
                 await tagMoiaAsSeen(moia.id.toString())
                 try {
                   await tagAudio.play()
-                } catch { }
+                } catch {}
                 props.refetch()
               }}
             >
