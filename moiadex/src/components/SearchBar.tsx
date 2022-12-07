@@ -51,8 +51,11 @@ const styles = css`
     height: 50px;
     font-size: 20px;
     padding-left: 10px;
-    padding-rigth: 30px;
+    padding-right: 40px;
     width: 100%;
+  }
+  .input::placeholder {
+    color: #8c9296;
   }
   .wrapper {
     position: relative;
