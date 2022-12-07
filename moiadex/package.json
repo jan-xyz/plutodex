@@ -16,7 +16,8 @@
   "dependencies": {
     "@solidjs/router": "^0.5.1",
     "dexie": "^3.2.2",
-    "solid-js": "^1.5.1"
+    "solid-js": "^1.5.1",
+    "vite-plugin-inline-css-modules": "^0.0.7"
   },
   "prettier": {
     "trailingComma": "es5",

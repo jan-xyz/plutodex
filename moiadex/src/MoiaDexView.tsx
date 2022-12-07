@@ -1,4 +1,5 @@
 import { For } from 'solid-js'
+import { AddMoiaFormLink } from './AddMoiaForm'
 import { moiaResource } from './moiaDexie'
 
 export const MoiaDexView = () => {
@@ -9,6 +10,7 @@ export const MoiaDexView = () => {
       <button type="button" onClick={refetch}>
         refetch
       </button>
+      <AddMoiaFormLink />
       <For each={moias()}>
         {(moia) => (
           <div>

@@ -1,6 +1,21 @@
-import { useNavigate } from '@solidjs/router'
+import { A, useNavigate } from '@solidjs/router'
 import { createSignal } from 'solid-js'
 import { tagMoiaAsSeen } from './moiaDexie'
+import { css } from 'vite-plugin-inline-css-modules'
+
+const LinkStyles = css`
+  .link {
+    color: hotpink;
+  }
+`
+
+export const AddMoiaFormLink = () => {
+  return (
+    <A class={LinkStyles.link} href="/addMoia">
+      +
+    </A>
+  )
+}
 
 export const AddMoiaForm = () => {
   const [number, setNumber] = createSignal('')
