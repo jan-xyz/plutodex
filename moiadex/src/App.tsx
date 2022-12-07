@@ -1,10 +1,10 @@
 import type { Component } from 'solid-js'
-import { MoiaDexView } from './MoiaDexView'
+import { MoiaDexRoutes } from './MoiaDexRoutes'
 
 const App: Component = () => {
   return (
     <>
-      <MoiaDexView />
+      <MoiaDexRoutes />
     </>
   )
 }

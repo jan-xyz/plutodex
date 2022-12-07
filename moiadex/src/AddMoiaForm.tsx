@@ -1,6 +1,6 @@
 import { createSignal } from 'solid-js'
 
-const AddMoiaForm = () => {
+export const AddMoiaForm = () => {
   const [number, setNumber] = createSignal('')
   return (
     <form
