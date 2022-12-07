@@ -1,26 +1,63 @@
-export const MoiaDexItemView = (props: { label: string; counter: number }) => {
-  const textFill = props.counter > 0 ? 'rgb(255,255,255)' : 'rgb(0,0,0)'
-  const rectFill = props.counter > 0 ? 'rgb(230,170,51)' : 'rgb(240,236,228)'
+import { css } from "vite-plugin-inline-css-modules";
+
+const Style = css`
+  .itemContainer {
+    position: relative;
+    width: 97.95px;
+    height: 97.83px;
+    border: 1px solid #000C15;
+    border-radius: 10px;
+  }
+
+  .label {
+    position: absolute;
+    left: 35.55%;
+    right: 39.45%;
+    top: 0%;
+    bottom: -3.45%;
+
+    font-family: 'Apercu';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 30px;
+    /* identical to box height */
+
+    text-align: center;
+    letter-spacing: -0.408px;
+
+    /* MOIA Black / 100 */
+
+    color: #000C15;
+  }
+
+  .avatarSeen {
+    position: absolute;
+    left: 12%;
+    right: 12%;
+    top: 36%;
+    bottom: 26%;
+    height: 37.17529296875px;
+    width: 74.44102478027344px;
+    background: url(public/Piksel Pluto.png);
+  }
+
+  .avatarUnseen {
+    position: absolute;
+    left: 31%;
+    right: 31%;
+    top: 34%;
+    bottom: 14%;
+    opacity: 0.3;
+    background: url(public/Piksel Lock.png);
+  }
+`;
+
+export const MoiaDexGridItem = (props: { label: string; counter: number }) => {
   return (
-    <svg width="200" height="100">
-      <rect
-        x="0"
-        y="0"
-        width="200"
-        height="100"
-        stroke="black"
-        stroke-width="3px"
-        fill={rectFill}
-      />
-      <text
-        x="50%"
-        y="50%"
-        dominant-baseline="middle"
-        text-anchor="middle"
-        fill={textFill}
-      >
-        {props.label}
-      </text>
-    </svg>
+    <div class={Style.itemContainer}>
+      <div class={Style.label}>{props.label.replace('Moia ', '')}</div>
+      <div class={(props.counter > 0) ? Style.avatarSeen : Style.avatarUnseen}></div>
+    </div>
   )
 }
