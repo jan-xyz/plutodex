@@ -15,13 +15,22 @@ const GridStyle = css`
   }
 `
 
-export const MoiaDexGrid = (props: { moias: Moia[] }) => {
+export const MoiaDexGrid = (props: { moias: Moia[]; refetch }) => {
   return (
     <div class={GridStyle.dexGrid}>
+      {!props?.moias && <p> Loading Moias...</p>}
       <For each={props.moias}>
         {(moia) => (
-          <div onClick={() => tagMoiaAsSeen(moia.id.toString())}>
-            <MoiaDexGridItem label={moia.label} counter={moia.counter} />
+          <div
+            onClick={async () => {
+              await tagMoiaAsSeen(moia.id.toString())
+              props.refetch()
+            }}
+          >
+            <MoiaDexGridItem
+              label={moia.id.toString()}
+              counter={moia.counter}
+            />
           </div>
         )}
       </For>

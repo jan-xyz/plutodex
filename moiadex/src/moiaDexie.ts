@@ -69,5 +69,3 @@ export const tagMoiaAsSeen = async (id: string) => {
   moia.counter = moia.counter + 1
   await moiaDb.moias.put(moia)
 }
-
-seedMoias()

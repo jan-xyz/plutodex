@@ -1,11 +1,11 @@
-import { css } from "vite-plugin-inline-css-modules";
+import { css } from 'vite-plugin-inline-css-modules'
 
 const Style = css`
   .itemContainer {
     position: relative;
     width: 97.95px;
     height: 97.83px;
-    border: 1px solid #000C15;
+    border: 1px solid #000c15;
     border-radius: 10px;
   }
 
@@ -28,7 +28,7 @@ const Style = css`
 
     /* MOIA Black / 100 */
 
-    color: #000C15;
+    color: #000c15;
   }
 
   .avatarSeen {
@@ -51,13 +51,15 @@ const Style = css`
     opacity: 0.3;
     background: url(/lock.png);
   }
-`;
+`
 
 export const MoiaDexGridItem = (props: { label: string; counter: number }) => {
   return (
     <div class={Style.itemContainer}>
-      <div class={Style.label}>{props.label.replace('Moia ', '')}</div>
-      <div class={(props.counter > 0) ? Style.avatarSeen : Style.avatarUnseen}></div>
+      <div class={Style.label}>{props.label}</div>
+      <div
+        class={props.counter > 0 ? Style.avatarSeen : Style.avatarUnseen}
+      ></div>
     </div>
   )
 }
