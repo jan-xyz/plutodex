@@ -11,7 +11,7 @@ export const MoiaDexView = () => {
         refetch
       </button>
       <AddMoiaFormLink />
-      <MoiaDexGrid moias={moias()}/>
+      <MoiaDexGrid moias={moias()} />
     </div>
   )
 }
