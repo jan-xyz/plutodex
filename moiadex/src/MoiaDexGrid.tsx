@@ -24,36 +24,36 @@ const GridStyle = css`
 `
 
 export const GridContainer = (props: { children: JSX.Element }) => {
-  return <div class={GridStyle.container}>{props.children}</div>
+	return <div class={GridStyle.container}>{props.children}</div>
 }
 
 export const MoiaDexGrid = (props: { moias: Moia[]; refetch }) => {
-  const tagAudio = makeAudio('/seen.wav')
+	const tagAudio = makeAudio('/seen.wav')
 
-  return (
-    <GridContainer>
-      <div class={GridStyle.dexGrid}>
-        {!props?.moias && <p> Loading Moias...</p>}
-        <For each={props.moias}>
-          {(moia) => (
-            <div
-              onClick={async () => {
-                await tagMoiaAsSeen(moia.id.toString())
-                try {
-                  await tagAudio.play()
-                } catch {}
-                props.refetch()
-              }}
-            >
-              <MoiaDexGridItem
-                label={moia.id.toString()}
-                counter={moia.counter}
-                type={moia.type}
-              />
-            </div>
-          )}
-        </For>
-      </div>
-    </GridContainer>
-  )
+	return (
+		<GridContainer>
+			<div class={GridStyle.dexGrid}>
+				{!props?.moias && <p> Loading Moias...</p>}
+				<For each={props.moias}>
+					{(moia) => (
+						<div
+							onClick={async () => {
+								await tagMoiaAsSeen(moia.id.toString())
+								try {
+									await tagAudio.play()
+								} catch { }
+								props.refetch()
+							}}
+						>
+							<MoiaDexGridItem
+								label={moia.id.toString()}
+								counter={moia.counter}
+								type={moia.type}
+							/>
+						</div>
+					)}
+				</For>
+			</div>
+		</GridContainer>
+	)
 }
