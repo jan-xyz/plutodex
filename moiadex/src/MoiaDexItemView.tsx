@@ -7,6 +7,7 @@ const Style = css`
     height: 97.83px;
     border: 1px solid #000c15;
     border-radius: 10px;
+    overflow: hidden;
   }
 
   .label {
@@ -51,6 +52,29 @@ const Style = css`
     opacity: 0.3;
     background: url(/lock.png);
   }
+  .highlight {
+    box-sizing: border-box;
+    position: absolute;
+    width: 115px;
+    height: 36px;
+    bottom: -25px;
+    right: -40px;
+    background: #e6aa33;
+    border: 1px solid #000c15;
+    transform: rotate(-45deg);
+  }
+  .counter {
+    position: absolute;
+    width: 9px;
+    height: 12px;
+    bottom: 4px;
+    right: 8px;
+    font-size: 10px;
+    line-height: 12px;
+    text-align: center;
+    letter-spacing: -0.408px;
+    color: #000c15;
+  }
 `
 
 export const MoiaDexGridItem = (props: { label: string; counter: number }) => {
@@ -60,6 +84,8 @@ export const MoiaDexGridItem = (props: { label: string; counter: number }) => {
       <div
         class={props.counter > 0 ? Style.avatarSeen : Style.avatarUnseen}
       ></div>
+      {props.counter > 0 && <div class={Style.highlight}></div>}
+      {props.counter > 0 && <div class={Style.counter}>x{props.counter}</div>}
     </div>
   )
 }
