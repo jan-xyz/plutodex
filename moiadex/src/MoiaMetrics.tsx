@@ -5,7 +5,7 @@ const Styles = css`
   .box {
     height: 40px;
     width: 100%;
-    background: #F0ECE4;
+    background: #f0ece4;
     border-radius: 100px;
     padding: 5px;
   }
@@ -55,30 +55,34 @@ const Styles = css`
 `
 
 export const Metrics = (props: { moias: Moia[] }) => {
-	const calculateMetrics = () => {
-		const total = props.moias.length;
-		const collected = props.moias.filter(moia => moia.counter > 0).length
-		const progress = collected / total * 100
+  const calculateMetrics = () => {
+    const total = props.moias.length
+    const collected = props.moias.filter((moia) => moia.counter > 0).length
+    const progress = (collected / total) * 100
 
-		return { total, collected, progress }
-	}
-	return (
-		<div class={Styles.metrics}>
-			<div class={Styles.numbers}>
-				<div class={Styles.collected}>{calculateMetrics().collected}</div>
-				<div class={Styles.slash}>/</div>
-				<div class={Styles.total}>{calculateMetrics().total}</div>
-				<div class={Styles.text}>PLUTOS SEEN</div>
-			</div>
-			<div class={Styles.progresswrapper}>
-				<ProgressBar progress={calculateMetrics().progress} />
-			</div>
-		</div>
-	)
+    return { total, collected, progress }
+  }
+  return (
+    <div class={Styles.metrics}>
+      <div class={Styles.numbers}>
+        <div class={Styles.collected}>{calculateMetrics().collected}</div>
+        <div class={Styles.slash}>/</div>
+        <div class={Styles.total}>{calculateMetrics().total}</div>
+        <div class={Styles.text}>PLUTOS SEEN</div>
+      </div>
+      <div class={Styles.progresswrapper}>
+        <ProgressBar progress={calculateMetrics().progress} />
+      </div>
+    </div>
+  )
 }
 
 export const ProgressBar = (props: { progress: number }) => {
-	return (
-		<div class={Styles.box}><div class={Styles.progress} style={{ width: `${props.progress}%` }}> </div></div>
-	)
+  return (
+    <div class={Styles.box}>
+      <div class={Styles.progress} style={{ width: `${props.progress}%` }}>
+        {' '}
+      </div>
+    </div>
+  )
 }

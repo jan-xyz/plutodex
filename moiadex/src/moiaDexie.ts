@@ -1,6 +1,6 @@
 import Dexie, { Table } from 'dexie'
 import { createResource } from 'solid-js'
-import {sample} from 'lodash'
+import { sample } from 'lodash'
 
 export type Moia = {
   id: number
@@ -26,7 +26,7 @@ class MoiaDatabase extends Dexie {
 const moiaDb = new MoiaDatabase()
 
 export const seedMoias = async () => {
-  Array.from({ length: 800 }, (_, index) => {
+  Array.from({ length: 480 }, (_, index) => {
     moiaDb.moias.put({
       id: index + 1,
       label: `${index + 1}`,
@@ -34,7 +34,7 @@ export const seedMoias = async () => {
       licencePlate: 'tbd',
       counter: 0,
       trivia: 'hi',
-      type: sample(['plain', 'pride', 'christmas'])
+      type: sample(['plain', 'pride', 'christmas']),
     })
   })
 }
