@@ -8,7 +8,7 @@ export type Moia = {
   licencePlate: string
   counter: number
   trivia: string
-  type: string
+  type: 'plain' | 'pride'
 }
 
 class MoiaDatabase extends Dexie {
@@ -33,7 +33,7 @@ export const seedMoias = async () => {
       licencePlate: 'tbd',
       counter: 0,
       trivia: 'hi',
-      type: 'Pluto',
+      type: 'plain',
     })
   })
 }

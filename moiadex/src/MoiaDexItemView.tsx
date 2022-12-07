@@ -1,4 +1,5 @@
 import { css } from 'vite-plugin-inline-css-modules'
+import { Moia } from './moiaDexie';
 
 const Style = css`
   .itemContainer {
@@ -8,6 +9,10 @@ const Style = css`
     border: 1px solid #000c15;
     border-radius: 10px;
     overflow: hidden;
+  }
+
+  .itemContainerPride {
+    background: url(/pride_bg.png);
   }
 
   .label {
@@ -77,13 +82,28 @@ const Style = css`
   }
 `
 
-export const MoiaDexGridItem = (props: { label: string; counter: number }) => {
+const getContainerClass = (options: {seenBefore: boolean, type: Moia['type']}) => {
+  const baseClass = Style.itemContainer;
+  if (!options.seenBefore) return baseClass;
+
+  switch (options.type) {
+    case 'pride':
+      return `${baseClass} ${Style.itemContainerPride}`
+    case 'plain':
+    default:
+      return baseClass;
+  }
+
+}
+
+export const MoiaDexGridItem = (props: { label: string; counter: number, type: Moia['type'] }) => {
+  const seenBefore = props.counter > 0;
+  const containerClass =  getContainerClass({seenBefore, type: props.type});
+  const avatarClass = seenBefore ? Style.avatarSeen : Style.avatarUnseen;
   return (
-    <div class={Style.itemContainer}>
+    <div class={containerClass}>
       <div class={Style.label}>{props.label}</div>
-      <div
-        class={props.counter > 0 ? Style.avatarSeen : Style.avatarUnseen}
-      ></div>
+      <div class={avatarClass}></div>
       {props.counter > 0 && <div class={Style.highlight}></div>}
       {props.counter > 0 && <div class={Style.counter}>x{props.counter}</div>}
     </div>

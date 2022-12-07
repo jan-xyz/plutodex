@@ -31,6 +31,7 @@ export const MoiaDexGrid = (props: { moias: Moia[]; refetch }) => {
             <MoiaDexGridItem
               label={moia.id.toString()}
               counter={moia.counter}
+              type={moia.type}
             />
           </div>
         )}
