@@ -39,7 +39,7 @@ const Style = css`
     bottom: 26%;
     height: 37.17529296875px;
     width: 74.44102478027344px;
-    background: url(public/Piksel Pluto.png);
+    background: url(/pluto.png);
   }
 
   .avatarUnseen {
@@ -49,7 +49,7 @@ const Style = css`
     top: 34%;
     bottom: 14%;
     opacity: 0.3;
-    background: url(public/Piksel Lock.png);
+    background: url(/lock.png);
   }
 `;
 
