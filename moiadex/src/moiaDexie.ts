@@ -25,24 +25,26 @@ class MoiaDatabase extends Dexie {
 const moiaDb = new MoiaDatabase()
 
 export const seedMoias = async () => {
-  const moias = await getMoias()
-  if (moias.length === 0) {
-    Array.from({ length: 800 }, (_, index) => {
-      moiaDb.moias.put({
-        id: index,
-        label: `Moia ${index}`,
-        city: 'Hamburg',
-        licencePlate: 'tbd',
-        counter: 0,
-        trivia: 'hi',
-        type: 'Pluto',
-      })
+  Array.from({ length: 800 }, (_, index) => {
+    moiaDb.moias.put({
+      id: index,
+      label: `Moia ${index}`,
+      city: 'Hamburg',
+      licencePlate: 'tbd',
+      counter: 0,
+      trivia: 'hi',
+      type: 'Pluto',
     })
-  }
+  })
 }
 
 export const getMoias = async () => {
   const moias = await moiaDb.moias.toArray()
+  if (moias.length === 0) {
+    await seedMoias()
+    const moias = await moiaDb.moias.toArray()
+    return moias
+  }
   return moias
 }
 
