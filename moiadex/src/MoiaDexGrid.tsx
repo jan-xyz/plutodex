@@ -2,6 +2,7 @@ import { For } from 'solid-js'
 import { css } from 'vite-plugin-inline-css-modules'
 import { Moia, tagMoiaAsSeen } from './moiaDexie'
 import { MoiaDexGridItem } from './MoiaDexItemView'
+import { makeAudio } from '@solid-primitives/audio'
 
 const GridStyle = css`
   .dexGrid {
@@ -19,6 +20,8 @@ const GridStyle = css`
 `
 
 export const MoiaDexGrid = (props: { moias: Moia[]; refetch }) => {
+  const tagAudio = makeAudio("/seen.wav");
+
   return (
     <div class={GridStyle.dexGrid}>
       {!props?.moias && <p> Loading Moias...</p>}
@@ -27,6 +30,7 @@ export const MoiaDexGrid = (props: { moias: Moia[]; refetch }) => {
           <div
             onClick={async () => {
               await tagMoiaAsSeen(moia.id.toString())
+              await tagAudio.play()
               props.refetch()
             }}
           >
