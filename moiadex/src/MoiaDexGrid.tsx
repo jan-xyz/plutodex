@@ -7,9 +7,12 @@ import { MoiaDexGridItem } from './MoiaDexItemView'
 const GridStyle = css`
   .dexGrid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    grid-template-columns: repeat(auto-fill, 98px);
+    gap: 20px;
     background: #F0ECE4;
     border-radius: 35px;
+    width: 100%;
+    padding: 35px 25px;
   }
 `
 
