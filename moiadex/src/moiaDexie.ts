@@ -8,7 +8,7 @@ export type Moia = {
   licencePlate: string
   counter: number
   trivia: string
-  type: 'plain' | 'pride'
+  type: 'plain' | 'pride' | 'christmas'
 }
 
 class MoiaDatabase extends Dexie {

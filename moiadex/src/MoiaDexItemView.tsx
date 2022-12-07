@@ -15,6 +15,10 @@ const Style = css`
     background: url(/pride_bg.png);
   }
 
+  .itemContainerChristmas {
+    background: url(/christmas_bg.png);
+  }
+
   .label {
     position: absolute;
     left: 35.55%;
@@ -89,6 +93,8 @@ const getContainerClass = (options: {seenBefore: boolean, type: Moia['type']}) =
   switch (options.type) {
     case 'pride':
       return `${baseClass} ${Style.itemContainerPride}`
+    case 'christmas':
+      return `${baseClass} ${Style.itemContainerChristmas}`
     case 'plain':
     default:
       return baseClass;
