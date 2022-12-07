@@ -27,7 +27,7 @@ const moiaDb = new MoiaDatabase()
 export const seedMoias = async () => {
   Array.from({ length: 800 }, (_, index) => {
     moiaDb.moias.put({
-      id: index,
+      id: index + 1,
       label: `Moia ${index}`,
       city: 'Hamburg',
       licencePlate: 'tbd',
