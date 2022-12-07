@@ -1,7 +1,6 @@
-import { A } from '@solidjs/router'
 import { For } from 'solid-js'
 import { css } from 'vite-plugin-inline-css-modules'
-import { Moia } from './moiaDexie'
+import { Moia, tagMoiaAsSeen } from './moiaDexie'
 import { MoiaDexGridItem } from './MoiaDexItemView'
 
 const GridStyle = css`
@@ -9,7 +8,7 @@ const GridStyle = css`
     display: grid;
     grid-template-columns: repeat(auto-fill, 98px);
     gap: 20px;
-    background: #F0ECE4;
+    background: #f0ece4;
     border-radius: 35px;
     width: 100%;
     padding: 35px 25px;
@@ -21,9 +20,9 @@ export const MoiaDexGrid = (props: { moias: Moia[] }) => {
     <div class={GridStyle.dexGrid}>
       <For each={props.moias}>
         {(moia) => (
-          <A href={`/moia/${moia.id}`}>
+          <div onClick={() => tagMoiaAsSeen(moia.id.toString())}>
             <MoiaDexGridItem label={moia.label} counter={moia.counter} />
-          </A>
+          </div>
         )}
       </For>
     </div>

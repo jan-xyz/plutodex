@@ -16,7 +16,7 @@ class MoiaDatabase extends Dexie {
 
   constructor() {
     super('MoiaDatabase')
-    this.version(2).stores({
+    this.version(3).stores({
       moias: '++id, label',
     })
   }
@@ -64,8 +64,8 @@ const getMoiaById = async (id: string) => {
 export const moiaByIdResource = (id: string) => {
   return createResource(id, getMoiaById)
 }
-export const tagMoiaAsSeen = async (label: string) => {
-  const moia = await getMoiaByLabel(label)
+export const tagMoiaAsSeen = async (id: string) => {
+  const moia = await getMoiaById(id)
   moia.counter = moia.counter + 1
   await moiaDb.moias.put(moia)
 }
