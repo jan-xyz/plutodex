@@ -30,6 +30,7 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
+        cache-dependency-path: 'moiadex/package-lock.json'
     - name: npm checks
       run: |
         npm ci
