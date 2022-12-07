@@ -9,7 +9,13 @@ export const MoiaDexView = () => {
       <button type="button" onClick={refetch}>
         refetch
       </button>
-      <For each={moias()}>{(moia) => <div>{moia.label}</div>}</For>
+      <For each={moias()}>
+        {(moia) => (
+          <div>
+            {moia.label} {moia.counter}
+          </div>
+        )}
+      </For>
     </div>
   )
 }
