@@ -41,8 +41,6 @@ export const seedMoias = async () => {
 	}
 }
 
-seedMoias()
-
 export const getMoias = async () => {
 	const moias = await moiaDb.moias.toArray()
 	return moias
@@ -60,3 +58,5 @@ export const tagMoiaAsSeen = async (label: string) => {
 	moia.counter = moia.counter + 1
 	await moiaDb.moias.put(moia)
 }
+
+seedMoias()
