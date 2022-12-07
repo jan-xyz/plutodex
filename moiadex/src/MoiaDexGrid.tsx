@@ -7,6 +7,7 @@ const GridStyle = css`
   .dexGrid {
     display: grid;
     grid-template-columns: repeat(auto-fill, 98px);
+    justify-content: center;
     gap: 20px;
     background: #f0ece4;
     border-radius: 35px;
