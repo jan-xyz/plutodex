@@ -1,5 +1,6 @@
 import Dexie, { Table } from 'dexie'
 import { createResource } from 'solid-js'
+import {sample} from 'lodash'
 
 export type Moia = {
   id: number
@@ -33,7 +34,7 @@ export const seedMoias = async () => {
       licencePlate: 'tbd',
       counter: 0,
       trivia: 'hi',
-      type: 'plain',
+      type: sample(['plain', 'pride', 'christmas'])
     })
   })
 }
