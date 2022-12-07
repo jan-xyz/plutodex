@@ -1,5 +1,5 @@
 import { Route, Router, Routes } from '@solidjs/router'
-import { AddMoiaForm } from './AddMoiaForm'
+import { MoiaDetails } from './MoiaDetails'
 import { MoiaDexView } from './MoiaDexView'
 
 export const MoiaDexRoutes = () => {
@@ -7,7 +7,7 @@ export const MoiaDexRoutes = () => {
     <Router>
       <Routes>
         <Route path="/" component={MoiaDexView} />
-        <Route path="/addMoia" component={AddMoiaForm} />
+        <Route path="/moia/:id" component={MoiaDetails} />
       </Routes>
     </Router>
   )

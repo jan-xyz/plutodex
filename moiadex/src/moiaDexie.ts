@@ -54,10 +54,12 @@ export const getMoiaByLabel = async (label: string) => {
   return moiaDb.moias.where({ label }).first()
 }
 
-const getMoiaById = (id: string) => {
-  return moiaDb.moias.get(id)
+const getMoiaById = async (id: string) => {
+  const moia = await moiaDb.moias.get(Number(id))
+  return moia
 }
-export const moiaByIdResource = async (id: string) => {
+
+export const moiaByIdResource = (id: string) => {
   return createResource(id, getMoiaById)
 }
 export const tagMoiaAsSeen = async (label: string) => {

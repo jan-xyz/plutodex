@@ -1,3 +1,4 @@
+import { A } from '@solidjs/router'
 import { For } from 'solid-js'
 import { css } from 'vite-plugin-inline-css-modules'
 import { Moia } from './moiaDexie'
@@ -16,9 +17,9 @@ export const MoiaDexGrid = (props: { moias: Moia[] }) => {
     <div class={GridStyle.dexGrid}>
       <For each={props.moias}>
         {(moia) => (
-          <div>
+          <A href={`/moia/${moia.id}`}>
             <MoiaDexItemView label={moia.label} counter={moia.counter} />
-          </div>
+          </A>
         )}
       </For>
     </div>
