@@ -218,7 +218,7 @@ export const MoiaDetails = () => {
             icon={<></>}
           />
           <MetricBox label="SEEN LAST" metric="2 days ago" icon={<></>} />
-          <img ref={(ref) => (imgRef = ref)} />
+          <img class={styles.infoImg} ref={(ref) => (imgRef = ref)} />
         </div>
         <AddMoiaForm refetch={refetch} id={params.id} />
       </GridContainer>
