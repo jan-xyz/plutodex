@@ -6,7 +6,7 @@ export type Moia = {
   id: number
   label: string
   city: string
-  licencePlate: string
+  licensePlate: string
   counter: number
   trivia: string
   type: 'plain' | 'pride' | 'christmas'
@@ -25,18 +25,25 @@ class MoiaDatabase extends Dexie {
 // Declare tables, IDs and indexes
 const moiaDb = new MoiaDatabase()
 
+const fetchVehiclesJSON = async () => {
+  const response = await fetch('/vehicles.json')
+  return response.json() as Promise<{id: string, label: number, licensePlate: string, city: string}[]>;
+}
+
 export const seedMoias = async () => {
-  Array.from({ length: 480 }, (_, index) => {
+  const vehicles = await fetchVehiclesJSON() ;
+
+  vehicles.forEach(({label, licensePlate, city}) => {
     moiaDb.moias.put({
-      id: index + 1,
-      label: `${index + 1}`,
-      city: 'Hamburg',
-      licencePlate: 'tbd',
+      id: label,
+      label: label.toString(),
+      city,
+      licensePlate,
       counter: 0,
       trivia: 'hi',
       type: sample(['plain', 'pride', 'christmas']),
     })
-  })
+  });
 }
 
 export const getMoias = async () => {
