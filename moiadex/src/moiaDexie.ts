@@ -10,6 +10,7 @@ export type Moia = {
   counter: number
   trivia: string
   image?: Blob
+  date?: string
   type: 'plain' | 'pride' | 'christmas' | 'harry-potter'
 }
 
@@ -94,6 +95,7 @@ export const tagMoiaAsSeen = async (id: string) => {
 export const incrementMoiaCounter = async (id: string) => {
   const moia = await getMoiaById(id)
   moia.counter = moia.counter + 1
+  moia.date = new Date().toISOString()
   await moiaDb.moias.put(moia)
 }
 
