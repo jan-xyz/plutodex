@@ -9,7 +9,7 @@ export type Moia = {
   licensePlate: string
   counter: number
   trivia: string
-  type: 'plain' | 'pride' | 'christmas'
+  type: 'plain' | 'pride' | 'christmas' | 'harry-potter'
 }
 
 export type MoiaDetails = {
@@ -53,7 +53,7 @@ export const seedMoias = async () => {
       licensePlate,
       counter: 0,
       trivia: 'hi',
-      type: sample(['plain', 'pride', 'christmas']),
+      type: sample(['plain', 'pride', 'christmas', 'harry-potter']),
     })
   })
 }

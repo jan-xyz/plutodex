@@ -19,6 +19,10 @@ const Style = css`
     background: url(/christmas_bg.png);
   }
 
+  .itemContainerHarryPotter {
+    background: url(/harry_potter_bg.png);
+  }
+
   .label {
     position: absolute;
     left: 35.55%;
@@ -98,6 +102,8 @@ const getContainerClass = (options: {
       return `${baseClass} ${Style.itemContainerPride}`
     case 'christmas':
       return `${baseClass} ${Style.itemContainerChristmas}`
+    case 'harry-potter':
+      return `${baseClass} ${Style.itemContainerHarryPotter}`
     case 'plain':
     default:
       return baseClass

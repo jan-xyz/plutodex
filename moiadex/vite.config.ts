@@ -10,14 +10,14 @@ export default defineConfig({
     inlineCssModules(),
     VitePWA({
       registerType: 'autoUpdate',
-      includeAssets: ['favicon.ico', 'apple-touch-icon.png'],
+      useCredentials: true,
+      includeAssets: ['favicon.ico', '*.png', 'seen.wav'],
       manifest: {
         name: 'MOIA Plutodex',
         short_name: 'Plutodex',
         theme_color: '#E6AA33',
         background_color: '#F0ECE4',
         display: 'standalone',
-        scope: './',
         start_url: './',
         icons: [
           {
