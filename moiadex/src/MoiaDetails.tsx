@@ -22,11 +22,11 @@ const styles = css`
     border: 1px solid #000c15;
     border-radius: 10px;
     padding: 5px;
+    padding-bottom: 10px;
     min-height: 97px;
     aspect-ratio: 1;
     background: #fcf7eb;
-    display: grid;
-    grid-template-rows: 1fr min-content min-content;
+    position: relative;
   }
   .infoImg {
     border: 1px solid #000c15;
@@ -100,6 +100,14 @@ const styles = css`
     font-size: 20px;
     line-height: 20px;
     wite-space: nowrap;
+    position: absolute;
+    left: 5px;
+    bottom: 25px;
+  }
+  .metricLabel {
+    position: absolute;
+    left: 5px;
+    bottom: 5px;
   }
   .metricGrid {
     display: grid;
@@ -203,11 +211,7 @@ export const MoiaDetails = () => {
         />
         <div class={styles.metricGrid}>
           <MetricBox
-            label={
-              <>
-                SEEN <br /> LAST
-              </>
-            }
+            label={<>SEEN LAST</>}
             metric={
               moia()?.date
                 ? new Date(moia().date).toLocaleString().split(',')[0]
