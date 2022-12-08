@@ -19,7 +19,6 @@ const GridStyle = css`
     border-top-right-radius: 35px;
     width: 100%;
     padding: 35px 25px;
-    min-height: calc(100vh - 400px);
   }
 `
 
