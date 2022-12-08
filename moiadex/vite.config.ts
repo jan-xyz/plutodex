@@ -5,7 +5,6 @@ import { VitePWA } from 'vite-plugin-pwa'
 
 export default defineConfig({
   publicDir: 'assets',
-  base: '',
   plugins: [
     solidPlugin(),
     inlineCssModules(),
