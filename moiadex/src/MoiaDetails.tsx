@@ -1,3 +1,4 @@
+import { makeAudio } from '@solid-primitives/audio'
 import { useParams } from '@solidjs/router'
 import { For, JSX } from 'solid-js'
 import { css } from 'vite-plugin-inline-css-modules'
@@ -136,6 +137,8 @@ export const MoiaDetails = () => {
   const [moia, { refetch }] = moiaByIdResource(params.id)
   const [details, { refetch: refetchDetails }] = moiaDetailResource(params.id)
 
+  const tagAudio = makeAudio('/seen.wav');
+
   return (
     <div class={styles.grid}>
       <Logo />
@@ -147,6 +150,9 @@ export const MoiaDetails = () => {
           increment={async () => {
             console.log('calling this')
             await incrementMoiaCounter(params.id)
+            try {
+              await tagAudio.play()
+            } catch { }
             refetch(params.id)
           }}
           decrement={async () => {
