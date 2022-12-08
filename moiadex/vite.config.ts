@@ -11,7 +11,7 @@ export default defineConfig({
     VitePWA({
       registerType: 'autoUpdate',
       useCredentials: true,
-      includeAssets: ['favicon.ico', 'apple-touch-icon.png'],
+      includeAssets: ['favicon.ico', '*.png', 'seen.wav'],
       manifest: {
         name: 'MOIA Plutodex',
         short_name: 'Plutodex',
