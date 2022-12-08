@@ -16,7 +16,7 @@ const styles = css`
   }
 
   .plutoball {
-    animation: shake 1s cubic-bezier(.36,.07,.19,.97) 3;
+    animation: shake 1.15s cubic-bezier(.36,.07,.19,.97) 3;
     transform-origin: center;
   }
 
@@ -35,7 +35,7 @@ export const Logo = () => {
   createEffect(() => {
     setInterval(() => {
       setAnimated(!animated())
-    }, 1000 * 2.5)
+    }, 1000 * 4)
   })
   return (
     <svg
