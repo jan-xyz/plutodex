@@ -37,13 +37,15 @@ const moiaDb = new MoiaDatabase()
 
 const fetchVehiclesJSON = async () => {
   const response = await fetch('/vehicles.json')
-  return response.json() as Promise<{id: string, label: number, licensePlate: string, city: string}[]>;
+  return response.json() as Promise<
+    { id: string; label: number; licensePlate: string; city: string }[]
+  >
 }
 
 export const seedMoias = async () => {
-  const vehicles = await fetchVehiclesJSON() ;
+  const vehicles = await fetchVehiclesJSON()
 
-  vehicles.forEach(({label, licensePlate, city}) => {
+  vehicles.forEach(({ label, licensePlate, city }) => {
     moiaDb.moias.put({
       id: label,
       label: label.toString(),
@@ -53,7 +55,7 @@ export const seedMoias = async () => {
       trivia: 'hi',
       type: sample(['plain', 'pride', 'christmas']),
     })
-  });
+  })
 }
 
 export const getMoias = async () => {
