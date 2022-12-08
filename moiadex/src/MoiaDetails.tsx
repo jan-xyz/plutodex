@@ -1,6 +1,6 @@
 import { makeAudio } from '@solid-primitives/audio'
-import { useParams } from '@solidjs/router'
-import { For, JSX } from 'solid-js'
+import { useNavigate, useParams } from '@solidjs/router'
+import { createEffect, JSX } from 'solid-js'
 import { css } from 'vite-plugin-inline-css-modules'
 import { AddMoiaForm } from './AddMoiaForm'
 import { GridContainer } from './MoiaDexGrid'
@@ -8,7 +8,6 @@ import {
   decrementMoiaCounter,
   incrementMoiaCounter,
   moiaByIdResource,
-  moiaDetailResource,
 } from './moiaDexie'
 import { Logo } from './MoiaDexView'
 
@@ -168,18 +167,30 @@ export const CounterForm = (props: {
 
 export const MoiaDetails = () => {
   const params = useParams()
+  const navigate = useNavigate()
   const [moia, { refetch }] = moiaByIdResource(params.id)
 
   const tagAudio = makeAudio('/seen.wav')
   const getImageBlob = () => {
-    const imageUrl = URL.createObjectURL(moia()?.image)
-    return imageUrl ? imageUrl : undefined
+    return moia()?.image ? URL.createObjectURL(moia()?.image) : undefined
   }
 
+  let imgRef: HTMLImageElement | undefined
+  createEffect(() => {
+    if (imgRef && moia()?.image) {
+      const src = getImageBlob()
+      imgRef.src = src
+    }
+  })
   return (
     <div class={styles.grid}>
-      <Logo />
-
+      <div
+        onClick={() => {
+          navigate('/')
+        }}
+      >
+        <Logo />
+      </div>
       <GridContainer>
         <h1 class={styles.headline}>Pluto {moia()?.label ?? ''}</h1>
         <CounterForm
@@ -207,6 +218,7 @@ export const MoiaDetails = () => {
             icon={<></>}
           />
           <MetricBox label="SEEN LAST" metric="2 days ago" icon={<></>} />
+          <img ref={(ref) => (imgRef = ref)} />
         </div>
         <AddMoiaForm refetch={refetch} id={params.id} />
       </GridContainer>
