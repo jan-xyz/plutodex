@@ -9,6 +9,7 @@ export type Moia = {
   licensePlate: string
   counter: number
   trivia: string
+  image?: Blob
   type: 'plain' | 'pride' | 'christmas' | 'harry-potter'
 }
 
@@ -111,6 +112,13 @@ export const saveMoiaDetailsImage = async (id: string, blob: Blob) => {
     location: '',
   })
 }
+
+export const saveImageToMoia = async (id: string, blob: Blob) => {
+  const moia = await getMoiaById(id)
+  moia.image = blob
+  await moiaDb.moias.put(moia)
+}
+
 export const getMoiaDetails = async (id: string) => {
   const details = await moiaDb.moiaDetails.where({ moiaId: id }).toArray()
   return details

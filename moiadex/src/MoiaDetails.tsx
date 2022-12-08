@@ -25,6 +25,7 @@ const styles = css`
     padding: 5px;
     min-height: 97px;
     aspect-ratio: 1;
+    background: #fcf7eb;
   }
   .infoImg {
     border: 1px solid #000c15;
@@ -59,7 +60,7 @@ const styles = css`
     align-content: center;
     align-items: center;
     gap: 20px;
-    grid-template-columns: 63px 200px 63px;
+    grid-template-columns: 63px max-content 63px;
   }
 
   .counterBox {
@@ -70,7 +71,8 @@ const styles = css`
     font-weight: 400;
     font-size: 16px;
     line-height: 20px;
-    width: 200px;
+    max-width: 250px;
+    min-width: 150px;
     justify-items: center;
     justify-content: center;
     align-content: center;
@@ -78,6 +80,7 @@ const styles = css`
     display: grid;
     grid-auto-flow: column;
     gap: 5px;
+    background: #fcf7eb;
   }
   .infoButton {
     border: 1px solid #000c15;
@@ -92,11 +95,28 @@ const styles = css`
     font-weight: 500;
     font-size: 20px;
     line-height: 20px;
+    background: #fcf7eb;
   }
   .counterNumber {
     font-weight: 700;
     font-size: 32px;
     line-height: 20px;
+  }
+  .metricText {
+    font-style: normal;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 20px;
+    wite-space: nowrap;
+  }
+  .metricGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+    gap: 25px;
+  }
+  .metricLogo {
+    justify-items: flex-end;
+    display: grid;
   }
 `
 
@@ -106,6 +126,20 @@ export const CardGrid = (props: { children: JSX.Element }) => {
 
 export const InfoBox = (props: { children: JSX.Element }) => {
   return <div class={styles.info}>{props.children}</div>
+}
+
+export const MetricBox = (props: {
+  icon: JSX.Element
+  metric: JSX.Element
+  label: JSX.Element
+}) => {
+  return (
+    <InfoBox>
+      <div class={styles.metricLogo}>{props.icon}</div>
+      <div class={styles.metricText}>{props.metric}</div>
+      <div class={styles.metricLabel}>{props.label}</div>
+    </InfoBox>
+  )
 }
 
 export const CounterForm = (props: {
@@ -135,9 +169,12 @@ export const CounterForm = (props: {
 export const MoiaDetails = () => {
   const params = useParams()
   const [moia, { refetch }] = moiaByIdResource(params.id)
-  const [details, { refetch: refetchDetails }] = moiaDetailResource(params.id)
 
-  const tagAudio = makeAudio('seen.wav')
+  const tagAudio = makeAudio('/seen.wav')
+  const getImageBlob = () => {
+    const imageUrl = URL.createObjectURL(moia()?.image)
+    return imageUrl ? imageUrl : undefined
+  }
 
   return (
     <div class={styles.grid}>
@@ -148,7 +185,6 @@ export const MoiaDetails = () => {
         <CounterForm
           counter={moia()?.counter ?? 0}
           increment={async () => {
-            console.log('calling this')
             await incrementMoiaCounter(params.id)
             try {
               await tagAudio.play()
@@ -160,19 +196,19 @@ export const MoiaDetails = () => {
             refetch(params.id)
           }}
         />
-        <AddMoiaForm refetch={refetchDetails} id={params.id} />
-        <CardGrid>
-          <For each={details()}>
-            {(detail) => (
+        <div class={styles.metricGrid}>
+          <MetricBox
+            label={
               <>
-                <img
-                  class={styles.infoImg}
-                  src={URL.createObjectURL(detail.image)}
-                />
+                SEEN <br /> LAST
               </>
-            )}
-          </For>
-        </CardGrid>
+            }
+            metric="2 days ago"
+            icon={<></>}
+          />
+          <MetricBox label="SEEN LAST" metric="2 days ago" icon={<></>} />
+        </div>
+        <AddMoiaForm refetch={refetch} id={params.id} />
       </GridContainer>
     </div>
   )

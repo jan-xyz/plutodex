@@ -1,4 +1,4 @@
-import { MoiaDetails, saveMoiaDetailsImage } from './moiaDexie'
+import { MoiaDetails, saveImageToMoia, saveMoiaDetailsImage } from './moiaDexie'
 import { css } from 'vite-plugin-inline-css-modules'
 
 const styles = css`
@@ -14,10 +14,11 @@ const styles = css`
     justify-items: center;
     text-align: center;
     display: grid;
-    aspect-ratio: 1;
     font-weight: 500;
+    max-width: 200px;
     font-size: 20px;
     line-height: 20px;
+    background: #fcf7eb;
   }
 `
 
@@ -45,7 +46,7 @@ export const AddMoiaForm = (props: {
         onChange={async (e) => {
           const [file] = e.currentTarget.files
           const blob = await fileToBlob(file)
-          await saveMoiaDetailsImage(props.id, blob)
+          await saveImageToMoia(props.id, blob)
           props.refetch(props.id)
         }}
         required

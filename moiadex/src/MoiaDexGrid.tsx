@@ -20,6 +20,8 @@ const GridStyle = css`
     border-top-right-radius: 35px;
     width: 100%;
     padding: 35px 25px;
+    display: grid;
+    gap: 40px;
   }
 `
 
@@ -28,7 +30,7 @@ export const GridContainer = (props: { children: JSX.Element }) => {
 }
 
 export const MoiaDexGrid = (props: { moias: Moia[]; refetch }) => {
-  const tagAudio = makeAudio('seen.wav')
+  const tagAudio = makeAudio('/seen.wav')
   const navigate = useNavigate()
 
   return (
@@ -42,7 +44,7 @@ export const MoiaDexGrid = (props: { moias: Moia[]; refetch }) => {
                 await tagMoiaAsSeen(moia.id.toString())
                 try {
                   await tagAudio.play()
-                } catch {}
+                } catch { }
                 navigate(`/moia/${moia.id}`)
                 props.refetch()
               }}
