@@ -4,7 +4,7 @@ import { MoiaDexView } from './MoiaDexView'
 
 export const MoiaDexRoutes = () => {
   return (
-    <Router base={import.meta.env.BASE_URL}>
+    <Router base="/plutodex/">
       <Routes>
         <Route path="/" component={MoiaDexView} />
         <Route path="/moia/:id" component={MoiaDetails} />
