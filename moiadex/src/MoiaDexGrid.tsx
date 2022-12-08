@@ -29,7 +29,7 @@ export const GridContainer = (props: { children: JSX.Element }) => {
   return <div class={GridStyle.container}>{props.children}</div>
 }
 
-export const MoiaDexGrid = (props: { moias: Moia[]; refetch }) => {
+export const MoiaDexGrid = (props: { moias: Moia[] }) => {
   const tagAudio = makeAudio('/seen.wav')
   const navigate = useNavigate()
 
@@ -41,12 +41,10 @@ export const MoiaDexGrid = (props: { moias: Moia[]; refetch }) => {
           {(moia) => (
             <div
               onClick={async () => {
-                await tagMoiaAsSeen(moia.id.toString())
                 try {
                   await tagAudio.play()
                 } catch { }
                 navigate(`/moia/${moia.id}`)
-                props.refetch()
               }}
             >
               <MoiaDexGridItem

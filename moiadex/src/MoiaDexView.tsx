@@ -57,7 +57,7 @@ export const Logo = () => {
 
 export const MoiaDexView = () => {
   const [query, setQuery] = createSignal('')
-  const [moias, { refetch }] = moiaResource()
+  const [moias] = moiaResource()
   const getFilteredPlutos = () => {
     return query().length
       ? moias().filter((moia) => moia.label.includes(query()))
@@ -69,7 +69,7 @@ export const MoiaDexView = () => {
       <Logo />
       <SearchBar query={query()} onChange={setQuery} />
       <Metrics moias={moias() ?? []} />
-      <MoiaDexGrid refetch={refetch} moias={getFilteredPlutos()} />
+      <MoiaDexGrid moias={getFilteredPlutos()} />
     </div>
   )
 }
