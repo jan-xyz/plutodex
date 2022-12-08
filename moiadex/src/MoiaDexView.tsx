@@ -16,7 +16,7 @@ const styles = css`
   }
 `
 
-const Icon = () => {
+export const Logo = () => {
   return (
     <svg
       class={styles.icon}
@@ -66,7 +66,7 @@ export const MoiaDexView = () => {
 
   return (
     <div class={styles.wrapper}>
-      <Icon />
+      <Logo />
       <SearchBar query={query()} onChange={setQuery} />
       <Metrics moias={moias() ?? []} />
       <MoiaDexGrid refetch={refetch} moias={getFilteredPlutos()} />

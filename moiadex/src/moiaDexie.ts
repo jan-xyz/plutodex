@@ -12,13 +12,23 @@ export type Moia = {
   type: 'plain' | 'pride' | 'christmas'
 }
 
+export type MoiaDetails = {
+  id: number
+  image: Blob
+  location: string
+  moiaId: string
+  date: string
+}
+
 class MoiaDatabase extends Dexie {
-  moias!: Table<Moia, string>
+  moias!: Table<Moia, number>
+  moiaDetails!: Table<MoiaDetails, number>
 
   constructor() {
     super('MoiaDatabase')
-    this.version(4).stores({
+    this.version(7).stores({
       moias: '++id, label',
+      moiaDetails: '++id, moiaId',
     })
   }
 }
@@ -76,4 +86,33 @@ export const tagMoiaAsSeen = async (id: string) => {
   const moia = await getMoiaById(id)
   moia.counter = moia.counter + 1
   await moiaDb.moias.put(moia)
+}
+
+export const incrementMoiaCounter = async (id: string) => {
+  const moia = await getMoiaById(id)
+  moia.counter = moia.counter + 1
+  await moiaDb.moias.put(moia)
+}
+
+export const decrementMoiaCounter = async (id: string) => {
+  const moia = await getMoiaById(id)
+  moia.counter = moia.counter - 1
+  await moiaDb.moias.put(moia)
+}
+
+export const saveMoiaDetailsImage = async (id: string, blob: Blob) => {
+  //@ts-expect-error id is autoincrement
+  await moiaDb.moiaDetails.add({
+    image: blob,
+    date: new Date().toISOString(),
+    moiaId: id,
+    location: '',
+  })
+}
+export const getMoiaDetails = async (id: string) => {
+  const details = await moiaDb.moiaDetails.where({ moiaId: id }).toArray()
+  return details
+}
+export const moiaDetailResource = (id: string) => {
+  return createResource(id, getMoiaDetails)
 }

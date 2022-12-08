@@ -16,7 +16,7 @@ const Styles = css`
 
   .progress {
     height: 30px;
-    background: white;
+    background: #e6aa33;
     border-radius: 100px;
   }
 
