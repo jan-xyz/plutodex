@@ -36,7 +36,7 @@ class MoiaDatabase extends Dexie {
 const moiaDb = new MoiaDatabase()
 
 const fetchVehiclesJSON = async () => {
-  const response = await fetch('/vehicles.json')
+  const response = await fetch('vehicles.json')
   return response.json() as Promise<
     { id: string; label: number; licensePlate: string; city: string }[]
   >

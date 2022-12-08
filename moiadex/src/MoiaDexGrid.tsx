@@ -28,7 +28,7 @@ export const GridContainer = (props: { children: JSX.Element }) => {
 }
 
 export const MoiaDexGrid = (props: { moias: Moia[]; refetch }) => {
-  const tagAudio = makeAudio('/seen.wav')
+  const tagAudio = makeAudio('seen.wav')
   const navigate = useNavigate()
 
   return (

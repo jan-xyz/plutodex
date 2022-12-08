@@ -137,7 +137,7 @@ export const MoiaDetails = () => {
   const [moia, { refetch }] = moiaByIdResource(params.id)
   const [details, { refetch: refetchDetails }] = moiaDetailResource(params.id)
 
-  const tagAudio = makeAudio('/seen.wav');
+  const tagAudio = makeAudio('seen.wav')
 
   return (
     <div class={styles.grid}>
